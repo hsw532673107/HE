@@ -1,0 +1,32 @@
+Private Function funvv()
+'商品信息选项更改后，设置当前行控件状态，F_F_1 子窗体
+	with me
+		Dim a As String, b As Integer, c As Integer
+		a = "Z_"
+		b = Mid(.ActiveControl.Name, 3, InStr(1, Mid(.ActiveControl.Name, 3), "_") - 1)
+		
+		if nz(.Controls(a & b & "_1"),"")="" then	'如果没有选择商品
+			for c = 2 to 10
+				if (c>=2 and c<=3)=ture or c>=6 then
+					.Controls(a & b & "_" & c).Enabled=false
+				end if
+			next c
+		else	'已选择商品
+			if mid(.Controls(a & b & "_1"),1,1)="A" then
+				'如果是现货商品
+				for c = 2 to 7
+					if (c>=2 and c<=3)=ture or c>=6 then
+						.Controls(a & b & "_" & c).Enabled=true
+					end if
+				next c
+			elseif mid(.Controls(a & b & "_1"),1,1)="C" or mid(.Controls(a & b & "_1"),1,1)="V" then
+				'如果是定制、虚拟商品
+				for c = 2 to 10
+					if (c>=2 and c<=3)=ture or c>=6 then
+						.Controls(a & b & "_" & c).Enabled=true
+					end if
+				next c
+			end if
+		end if
+	end with
+end function
