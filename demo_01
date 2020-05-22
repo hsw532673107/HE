@@ -30,3 +30,20 @@ Private Function funvv()
 		end if
 	end with
 end function
+-------------------------------------------------------
+Private Sub Form_Load()
+'窗体加载事件	F_F_1子窗体
+	with me
+		Dim a As String, b As Integer, c As Integer
+		a = "Z_"    '定义控件开头名
+
+		For b = 1 To 20
+			.Controls("c_" & b & "_1").Caption = "+" '改变按钮显示文本和字体颜色
+			.Controls("c_" & b & "_1").ForeColor = vbBlack
+			For c = 2 To 12
+				.Controls(a & b & "_" & c).Enabled = False
+				.Controls(a & b & "_" & c).Visible = False
+			Next c
+		Next b
+	end with
+End Sub
